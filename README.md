@@ -7,8 +7,10 @@ how to install :
 
 
 configure :
-1. run the popular post plugin in setting
-2. keyin google analytics email
-3. keyin google analytics password
-4. keyin google analytics profile id
-5. 
+1. edit the plugin by click edit
+2. keyin google analytics email on pop_admin function
+3. keyin google analytics password on pop_admin function
+4. keyin google analytics profile id on pop_admin function
+5. run the popular post plugin in setting
+
+ 
