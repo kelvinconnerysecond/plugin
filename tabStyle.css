@@ -1,0 +1,14 @@
+//css file for the tab
+#tab-one{
+	visibility:visible;
+}
+
+#tab-two{
+	display:none;
+	visibility:visible;
+}
+
+#tab-three{
+	display:none;
+	visibility:vis;
+}
