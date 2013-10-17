@@ -16,10 +16,18 @@
 		//create new gapi object
 		$ga = new gapi($ga_email,$ga_pass);
 		//displaying data according to the filter
+		
+		echo '<div><table><tr><td>';
+		
+		echo '</td><tr><td>
+		<button type="button" onclick="showPopTab(1)">Past 7 Days</button>
+		<button type="button" onclick="showPopTab(2)">Past Month</button>
+		<button type="button" onclick="showPopTab(3)">Past Year</button>
+		</td></tr><tr><td>';
 		fetchData($ga, $ga_profile_id, '-7 day','tab-one');
 		fetchData($ga, $ga_profile_id, '-1 month','tab-two');
 		fetchData($ga, $ga_profile_id, '-1 year','tab-three');
-		
+		echo '</td></tr></table></div>';
 		
 		
 	}
@@ -35,9 +43,13 @@
 		
 		$ga->requestReportData($ga_profile_id,array('pagePath'),array('pageviews', 'uniquePageviews'),array('-pageviews'),'pagePath != /',$startTimeStr,$endTimeStr,1,10);
 		
-		echo "<div class='wrap' id=$css_id>From: ".$startTimeStr.' until '.$endTimeStr.'<br/>'; 
 		//displaying result
-		echo '<table>';
+	
+		echo "<table  id=$css_id>";
+		echo "<tr><th>".$startTimeStr." until ".$endTimeStr."</th></tr>";
+		echo "<tr><th align='left'>post</th><th align='left'>visited</th></tr>";	
+		
+		
 		foreach($ga->getResults() as $result)
 		{
 			
@@ -48,6 +60,16 @@
 		}
 		echo '</table>';
 	}
+	
+	//adding css to the plugin
+	function loadStyle() {
+		wp_register_style('myTabCSS', plugins_url('tabStyle.css',__FILE__ ));
+		wp_enqueue_style('myTabCSS');
+		wp_register_script( 'myJS', plugins_url('tabJS.js',__FILE__ ));
+		wp_enqueue_script('myJS');
+	}
+	add_action( 'admin_init','loadStyle');
+	
 	//adding plugin to wp admin		
 	function popular_post_actions() {
 		add_options_page("Popular Post", "Popular Post","manage_options" ,__FILE__, "pop_admin");
