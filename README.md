@@ -1,4 +1,6 @@
-this is the pulgin to know the top 10 most visited page
+#Plugin
+
+###this is the pulgin to know the top 10 most visited page
 
 how to install :
 1. download the .zip file
